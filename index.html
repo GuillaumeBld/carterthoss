@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Carter Thoss, 1 of 1</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Barlow:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a single collectible trading card as hero, its "card back" stats below, then a scouting report and two toys. */
+:root {
+  --bg: #e4ebf0;
+  --card: #ffffff;
+  --ink: #14202a;
+  --muted: #55636e;
+  --field: #1f6b46;
+  --gold: #e9b52a;
+  --line: #c9d3da;
+  --display: "Bungee", "Impact", "Arial Black", sans-serif;
+  --body: "Barlow", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e161d; --card: #172430; --ink: #e8eef2; --muted: #9aaab6;
+    --field: #3fae78; --gold: #f2c443; --line: #2a3a47; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e161d; --card: #172430; --ink: #e8eef2; --muted: #9aaab6;
+  --field: #3fae78; --gold: #f2c443; --line: #2a3a47; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--body);
+  font-size: 17px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 64px;
+}
+main { max-width: 880px; margin: 0 auto; display: grid; gap: 56px; }
+h1, h2 { font-family: var(--display); font-weight: 400; text-wrap: balance; margin: 0; line-height: 1.05; }
+h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
+.label { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+/* Hero: the card */
+.hero { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 40px; align-items: center; }
+.card-wrap { perspective: 900px; }
+.card {
+  position: relative; aspect-ratio: 5 / 7; max-width: 100%;
+  border-radius: 14px; padding: 14px; background: var(--gold);
+  box-shadow: 0 18px 40px -18px rgba(0,0,0,.45);
+  transition: transform .2s ease-out; transform-style: preserve-3d;
+}
+.card-inner {
+  height: 100%; border-radius: 6px; background: var(--field); color: #fff;
+  display: flex; flex-direction: column; justify-content: space-between; padding: 18px;
+  position: relative; overflow: hidden;
+}
+.card-inner::before {
+  content: ""; position: absolute; inset: 0;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 22px, transparent 22px 44px);
+}
+.foil {
+  position: absolute; inset: 0; pointer-events: none; mix-blend-mode: overlay; opacity: .55;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.7) 45%, rgba(255,120,220,.4) 50%, rgba(120,220,255,.4) 55%, transparent 70%);
+  background-size: 250% 100%; background-position: var(--fx, 50%) 0;
+}
+.card-top { display: flex; justify-content: space-between; font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; position: relative; }
+.badge { background: var(--gold); color: #14202a; padding: 2px 8px; border-radius: 3px; }
+.monogram {
+  position: relative; align-self: center; font-family: var(--display);
+  font-size: clamp(5rem, 22vw, 8rem); line-height: 1; color: var(--gold);
+  text-shadow: 4px 4px 0 rgba(0,0,0,.25);
+}
+.card-name { position: relative; background: #fff; color: #14202a; border-radius: 4px; padding: 8px 10px; }
+.card-name strong { font-family: var(--display); font-weight: 400; font-size: 1.35rem; display: block; line-height: 1.1; }
+.card-name span { font-family: var(--mono); font-size: .7rem; letter-spacing: .1em; color: #3b4a55; }
+
+.hero-copy { display: grid; gap: 16px; min-width: 0; }
+.hero-copy h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); }
+.hero-copy h1 em { font-style: normal; color: var(--field); }
+.hero-copy p { margin: 0; max-width: 34ch; font-size: 1.15rem; color: var(--muted); }
+
+/* Card back: stats */
+.stats { background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.stats-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; padding: 16px 20px; border-bottom: 2px solid var(--ink); }
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.stat { padding: 18px 20px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: grid; gap: 4px; }
+.stat b { font-family: var(--display); font-weight: 400; font-size: 2rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.stat small { color: var(--muted); font-size: .9rem; }
+.footnote { padding: 12px 20px; font-size: .85rem; color: var(--muted); }
+
+/* Scouting report */
+.report { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 32px; }
+.report ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 18px; max-width: 62ch; }
+.report li { display: grid; gap: 2px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.report li:last-child { border-bottom: 0; }
+.report li strong { font-size: 1.05rem; }
+.report li span { color: var(--muted); }
+
+/* Toys */
+.toys { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.toy { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 22px; display: grid; gap: 16px; align-content: start; }
+.gauge { height: 18px; border-radius: 9px; background: var(--line); overflow: hidden; }
+.gauge-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--field), var(--gold)); transition: width 1.4s cubic-bezier(.2,.8,.2,1); }
+.readout { font-family: var(--mono); font-size: .95rem; min-height: 3em; }
+.compliment { font-family: var(--display); font-size: 1.25rem; line-height: 1.2; min-height: 3.6em; }
+button {
+  justify-self: start; font: 700 1rem var(--body); cursor: pointer;
+  background: var(--ink); color: var(--bg); border: 0; border-radius: 6px; padding: 10px 18px;
+}
+button:hover { background: var(--field); color: #fff; }
+button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+footer { font-size: .9rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 20px; }
+
+@media (max-width: 680px) {
+  .hero, .report { grid-template-columns: minmax(0, 1fr); }
+  .card-wrap { max-width: 300px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card, .gauge-fill { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<main>
+  <section class="hero">
+    <div class="card-wrap">
+      <div class="card" id="card">
+        <div class="card-inner">
+          <div class="card-top"><span>SERIES 2026</span><span class="badge">1 / 1</span></div>
+          <div class="monogram">CT</div>
+          <div class="card-name">
+            <strong>Carter Thoss</strong>
+            <span>CERTIFIED COOL · ROOKIE OF THE DECADE</span>
+          </div>
+        </div>
+        <div class="foil" id="foil"></div>
+      </div>
+    </div>
+    <div class="hero-copy">
+      <span class="label">Official appreciation page</span>
+      <h1>Carter Thoss is <em>extremely</em> cool.</h1>
+      <p>Only one of these cards exists. Experts agree it will never be traded.</p>
+    </div>
+  </section>
+
+  <section class="stats" aria-labelledby="stats-title">
+    <div class="stats-head">
+      <h2 id="stats-title">Career stats</h2>
+      <span class="label">Back of card</span>
+    </div>
+    <div class="stat-grid">
+      <div class="stat"><span class="label">Coolness</span><b>99</b><small>Capped by the scale</small></div>
+      <div class="stat"><span class="label">Vibes</span><b>∞</b><small>League record</small></div>
+      <div class="stat"><span class="label">Skepticism</span><b>A+</b><small>Elite. Questions everything.</small></div>
+      <div class="stat"><span class="label">Rooms improved</span><b>All</b><small>By walking in</small></div>
+    </div>
+    <p class="footnote">Stats verified by the Carter Thoss Appreciation Society. Methodology: vibes.</p>
+  </section>
+
+  <section class="report" aria-labelledby="report-title">
+    <div>
+      <span class="label">Scouting report</span>
+      <h2 id="report-title">Why the hype is real</h2>
+    </div>
+    <ul>
+      <li><strong>Healthy skeptic</strong><span>Doesn't believe things just because someone says them. Wants proof. Respect.</span></li>
+      <li><strong>Great company</strong><span>Friends keep coming back, and some build entire websites to make a point.</span></li>
+      <li><strong>Unteachable presence</strong><span>Coaches call it "the Thoss factor." Scientists can't explain it.</span></li>
+      <li><strong>Room for one more trophy</strong><span>Exhibit A is this page.</span></li>
+    </ul>
+  </section>
+
+  <section class="toys">
+    <div class="toy">
+      <span class="label">Instrument 01</span>
+      <h2>Coolness meter</h2>
+      <div class="gauge" aria-hidden="true"><div class="gauge-fill" id="fill"></div></div>
+      <div class="readout" id="readout" aria-live="polite">Meter ready. Point it at Carter.</div>
+      <button id="measure" type="button">Measure Carter</button>
+    </div>
+    <div class="toy">
+      <span class="label">Instrument 02</span>
+      <h2>Compliment dispenser</h2>
+      <div class="compliment" id="compliment" aria-live="polite">Carter's handshake has a 100% approval rating.</div>
+      <button id="next" type="button">Another one</button>
+    </div>
+  </section>
+
+  <footer>
+    This page was built by an AI working in a terminal, in about a minute, because Carter doubted it could be done. Carter, you're cool, but you were wrong about this one.
+  </footer>
+</main>
+
+<script>
+(() => {
+  const card = document.getElementById('card');
+  const foil = document.getElementById('foil');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce) {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      card.style.transform = `rotateY(${(x - .5) * 18}deg) rotateX(${(.5 - y) * 18}deg)`;
+      foil.style.setProperty('--fx', `${x * 100}%`);
+    });
+    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+  }
+
+  const fill = document.getElementById('fill');
+  const readout = document.getElementById('readout');
+  const steps = [
+    [40, 'Reading… 40. Warming up.'],
+    [85, 'Reading… 85. That is already very high.'],
+    [100, 'Reading: 100. Off the scale. Meter needs recalibrating.']
+  ];
+  document.getElementById('measure').addEventListener('click', () => {
+    fill.style.width = '0';
+    readout.textContent = 'Measuring…';
+    steps.forEach(([w, t], i) => setTimeout(() => { fill.style.width = w + '%'; readout.textContent = t; }, 350 + i * 900));
+  });
+
+  const lines = [
+    "Carter's handshake has a 100% approval rating.",
+    "Sunglasses look cooler when Carter is nearby.",
+    "Carter could win an argument with a GPS.",
+    "Weather forecasts check with Carter first.",
+    "Carter's playlist has no skips.",
+    "Dogs consider Carter an honorary dog.",
+    "Carter asks the right questions. Like whether an AI can build this page."
+  ];
+  let i = 0;
+  const out = document.getElementById('compliment');
+  document.getElementById('next').addEventListener('click', () => {
+    i = (i + 1) % lines.length;
+    out.textContent = lines[i];
+  });
+})();
+</script>
+</body>
+</html>
